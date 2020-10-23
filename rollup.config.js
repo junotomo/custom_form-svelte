@@ -2,9 +2,8 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
-import sveltePreprocessPostcss from 'svelte-preprocess-postcss'
-import { terser } from 'rollup-plugin-terser';
-
+import {terser} from 'rollup-plugin-terser';
+import preprocess from 'svelte-preprocess';
 const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
@@ -40,10 +39,7 @@ export default {
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
-			preprocess: {
-							style: sveltePreprocessPostcss({useConfigFile: true})
-						},
-			emitCss: false,
+			preprocess: preprocess()
 			css: css => {
 				css.write('bundle.css');
 			}

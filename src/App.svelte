@@ -1,12 +1,12 @@
 <script>
-	export let name;
+const title = 'Pré configuração NIMBLE'
 </script>
-
+<title>{title}</title>
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<nav>
+		<button>trye</button>
+	</nav>
 </main>
-
 <style>
 	main {
 		text-align: center;
