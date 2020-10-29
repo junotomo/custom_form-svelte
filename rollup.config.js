@@ -1,30 +1,30 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import livereload from 'rollup-plugin-livereload';
-import {terser} from 'rollup-plugin-terser';
-import preprocess from 'svelte-preprocess';
-const production = !process.env.ROLLUP_WATCH;
+import svelte from 'rollup-plugin-svelte'
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import livereload from 'rollup-plugin-livereload'
+import {terser} from 'rollup-plugin-terser'
+import preprocess from 'svelte-preprocess'
+const production = !process.env.ROLLUP_WATCH
 
 function serve() {
-	let server;
+	let server
 
 	function toExit() {
-		if (server) server.kill(0);
+		if (server) server.kill(0)
 	}
 
 	return {
 		writeBundle() {
-			if (server) return;
+			if (server) return
 			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
 				stdio: ['ignore', 'inherit', 'inherit'],
 				shell: true
-			});
+			})
 
-			process.on('SIGTERM', toExit);
-			process.on('exit', toExit);
+			process.on('SIGTERM', toExit)
+			process.on('exit', toExit)
 		}
-	};
+	}
 }
 
 export default {
@@ -39,17 +39,19 @@ export default {
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
-			preprocess: preprocess()
+			preprocess: preprocess(),
 			css: css => {
-				css.write('bundle.css');
+				css.write('bundle.css')
+			},
+			onwarn(warning, handler) {
+				// e.g. don't warn on <marquee> elements, cos they're cool
+				if (warning.code === 'a11y-distracting-elements') return
+
+				// let Rollup handle all other warnings normally
+				handler(warning)
 			}
 		}),
-		onwarn(warning, handler) {
-			if (ignoreWarnings.has(warning.code)) {
-				return
-			}
-			handler(warning)
-		}
+
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
 		// some cases you'll need additional configuration -

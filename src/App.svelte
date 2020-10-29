@@ -1,30 +1,30 @@
 <script>
-const title = 'Pré configuração NIMBLE'
+	import FormList from './containers/FormList.svelte'
+	import FormCreate from './containers/FormCreate.svelte'
+	import FormView from './containers/FormView.svelte'
+	import Sprite from './components/svg/Sprite.svelte'
+
+	let currentPage = FormCreate
+
+	const pages = [FormList, FormCreate, FormView]
+
+	const changePage = (event) => {
+		let currentIndex = pages.findIndex(page => page === currentPage)
+		currentIndex += event.detail.index
+		currentPage = pages[currentIndex]
+		console.log(currentIndex)
+	}
 </script>
-<title>{title}</title>
-<main>
-	<nav>
-		<button>trye</button>
-	</nav>
+<Sprite/>
+<main class='main-container'>
+	<h1>Pŕe - configuração NIMBLE</h1>
+	<svelte:component on:change={changePage} this={currentPage}/>
 </main>
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
+<style type='text/scss'>
+	.main-container {
+		display: grid;
+		justify-content: center;
+		background-color: #EFEFF4;
 	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+	</style>

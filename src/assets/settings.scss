@@ -1,0 +1,21 @@
+// @font-face{
+//   font-family: 'Lato-regular';
+//   src: url('./fonts/lato/Lato-regular.ttf') format('woff');
+// }
+:root {
+  --white: hsl(210, 100%, 100%);
+  --dark-gray: hsl(240, 9%, 44%);
+  --dark-gray--hover: hsl(var(--primary-hue), 100%, 39%);
+  --dark-gray--active: hsl(var(--primary-hue), 84%, 30%);
+
+  // btn
+  --btn-border: 0;
+  --btn-border-radius: 0.3em;
+  --btn-box-shadow: 0 0 8px hsla(0, 0%, 0%, 0.3);
+
+  //Text style
+  --text-size: 12px;
+  --title: 20px;
+  --page-title: 42px;
+
+}
