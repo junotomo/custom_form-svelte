@@ -2,26 +2,20 @@
   import Fake from './fakeComponents/Fake.svelte'
   import {createEventDispatcher} from 'svelte'
 
-  let types = ['single_input', 'single_dropdown', 'single_paragrafo','multipla', 'checkbox', 'checkbox_grade']
+  export let formID
+  console.log(formID)
+  let types = ['single_input', 'single_dropdown', 'single_paragrafo','multipla', 'checkbox', 'checkbox_grade', 'escala']
 
   const dispatch = createEventDispatcher()
 
   const add = (component) => {
-
-  }
-  const handleOuterClick = (event) => {
-    if (
-      state.closeOnOuterClick && (
-        event.target === background || event.target === wrap
-      )
-    ) {
-      event.preventDefault();
-    console.log('fechado')
-    }
+    dispatch('addInput', {
+      type: component,
+      id: formID
+    })
   }
 
-  function clickOutside(node) {
-
+  const clickOutside = (node) => {
    const handleClick = event => {
      if (node && !node.contains(event.target) && !event.defaultPrevented) {
        node.dispatchEvent(
@@ -39,15 +33,16 @@
  	}
  }
 
- function handleClickOutside(event) {
+ const handleClickOutside = () => {
    dispatch('close')
  }
+
 </script>
 
 
   <div class="modal_window" use:clickOutside on:click_outside={handleClickOutside}>
     {#each types as type}
-      <div class='container_fake_item'on:click={add(type)}>
+      <div class='container_fake_item'on:click={() => add(type)}>
         <Fake type={type}/>
       </div>
     {/each}

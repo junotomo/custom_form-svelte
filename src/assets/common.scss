@@ -2,12 +2,14 @@
   width: 16px;
   height: 16px;
 }
+
 %default_container {
   border-radius: 5px;
   box-shadow: 0px 0px 10px #7F7F7F33;
   background-color: var(--white);
   color: var(--dark-gray);
 }
+
 .icon_default {
   @extend %icon-size;
   fill: var(--dark-gray);

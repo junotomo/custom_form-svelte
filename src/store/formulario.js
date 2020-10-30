@@ -1,11 +1,11 @@
-import {writable} from 'svelte/store'
+import {writable, get} from 'svelte/store'
 
 
-// let form = {
-//   id: '',
-//   type: '',
-//   options: []
-// }
+export const getForm = id => {
+	return getForms().find(form => form.id === id)
+}
+
+export const getForms = () => get(forms)
 export const form = writable()
 
 

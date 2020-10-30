@@ -1,16 +1,27 @@
 <script>
   import Btn from './fragments/Btn.svelte'
+  import ComponentGetter from './editable/ComponentGetter.svelte'
   import Modal from './Modal.svelte'
+  import {forms} from '../store/formulario'
   import {dndzone} from 'svelte-dnd-action'
+  import hexID from '@tadashi/hex-id'
 
   export let form
 
-  let items = form.components
+  //let items = currentForm.components
   let modal = false
 
-  const add_input = () => {
+  const openModal = () => {
     modal = !modal
   }
+
+  const add_input = (event) =>{
+   let inputType = event.detail.type
+   let editedForm = $forms.find(edit => edit.id === form.id)
+   modal = false
+   editedForm.components = [...editedForm.components, {id: hexID(), type: inputType}]
+  }
+
   const excluir = (id) => {
 
   }
@@ -20,11 +31,11 @@
   }
 
   function handleDndConsider(e) {
-		items = e.detail.items;
+		form.components = e.detail.items;
 	}
 
 	function handleDndFinalize(e) {
-		items = e.detail.items;
+		form.components = e.detail.items;
 	}
 </script>
 
@@ -52,25 +63,27 @@
   </div>
 
   <section class='input_list'
-    use:dndzone={{items}}
+    use:dndzone={{items: form.components}}
     on:consider={handleDndConsider}
     on:finalize={handleDndFinalize}
   >
-    {#each items as component(component.id)}
+    {#each form.components as component (component.id)}
       <div class='form'>
-        {component.type}
+      <ComponentGetter type={component}/>
       </div>
     {/each}
   </section>
-
-  <Btn type='button'
-    classname={'pontilhado'}
-    icon={'form_icon_plus'}
-    on:click={() => add_input()}
-  />
+  {#if !form.defined}
+    <Btn type='button'
+      classname={'pontilhado'}
+      icon={'form_icon_plus'}
+      on:click={() => openModal()}
+    />
+  {/if}
 </div>
+
 {#if modal}
-  <Modal on:close={closeModal}/>
+  <Modal on:close={closeModal} on:addInput={add_input} formID={form.id}/>
 {/if}
 
 <style type='text/scss'>
@@ -98,7 +111,8 @@
     grid-gap: 10px;
   }
   .input_list {
-    display: grid;
-    grid-gap: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 1.5em;
   }
 </style>

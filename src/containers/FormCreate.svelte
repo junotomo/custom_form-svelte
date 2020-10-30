@@ -13,20 +13,38 @@
       {
         id: hexID(),
         title: 'Dados do segurado',
+        defined: true,
         components: [
           {
             id: hexID(),
-            type: 'text'
+            type: 'text',
+            placeholder: 'Nome do segurado',
+            size: 'long',
           },
           {
             id: hexID(),
-            type: 'select'
+            type: 'text',
+            size: 'normal',
+            placeholder: 'Tipo de pessoa',
+          },
+          {
+            id: hexID(),
+            type: 'text',
+            size: 'normal',
+            placeholder: 'CPF',
+          },
+          {
+            id: hexID(),
+            type: 'text',
+            size: 'normal',
+            placeholder: 'RG',
           }
         ],
       },
       {
         id: hexID(),
         title: 'Emails',
+        defined: true,
         components: [
           {
             id: hexID(),
@@ -41,6 +59,7 @@
       {
         id: hexID(),
         title: 'Telefone',
+        defined: true,
         components: [
           {
             id: hexID(),
@@ -55,6 +74,7 @@
       {
         id: hexID(),
         title: 'Dados do seguro',
+        defined: true,
         components: [
           {
             id: hexID(),
@@ -64,7 +84,7 @@
       }
     ]
     items = $forms
-    console.log($forms, items)
+    console.log($forms)
 
 
 
@@ -118,7 +138,7 @@
   </div>
 
   <section class='create_form_body' use:dndzone={{items:$forms}} on:consider={handleDndConsider} on:finalize={handleDndFinalize}>
-    {#each $forms as form(form.id)}
+    {#each $forms as form (form.id)}
       <CustomForm {form}/>
     {/each}
   </section>

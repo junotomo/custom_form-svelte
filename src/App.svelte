@@ -24,7 +24,8 @@
 <style type='text/scss'>
 	.main-container {
 		display: grid;
-		justify-content: center;
 		background-color: #EFEFF4;
+		max-width: 792px;
+		margin: auto;
 	}
 	</style>

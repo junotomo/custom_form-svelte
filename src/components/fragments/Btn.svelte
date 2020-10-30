@@ -3,9 +3,7 @@
   export let text = false
   export let classname = ''
   export let iconClass = ''
-  // if (!classname) {
-  //   classname ='default_btn'
-  // }
+
 </script>
 <button class:default_btn='{classname === ''}' class='custom_btn {classname}' on:click>
 
@@ -30,12 +28,16 @@
   @import '../../assets/settings';
 
   .small_btn{
-    min-width: 25px;
+    width: 25px;
     height: 25px;
     margin: auto 0px;
     box-shadow: var(--btn-box-shadow);
     background-color: var(--white);
     border: var(--btn-border);
+  }
+  .no_border{
+    background-color: var(--white);
+    border: none;
   }
 
   .default_btn{

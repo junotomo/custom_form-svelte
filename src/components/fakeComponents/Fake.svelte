@@ -6,7 +6,9 @@
   fakeMap.set('single_paragrafo', 'Parágrafo')
   fakeMap.set('multipla', 'Escolha múltipla')
   fakeMap.set('checkbox', 'Checkboxes')
+  fakeMap.set('escala', 'Escala Linear')
   fakeMap.set('checkbox_grade', 'Checkboxes(grade)')
+
   let title = fakeMap.get(type)
   let items = 3
 </script>
@@ -23,7 +25,7 @@
     </div>
   {:else}
     <div class='grade_component'>
-      {#if type !== 'multipla'}
+      {#if type !== 'multipla' && type !== 'escala'}
         <div class='grade_component_header'>
           <span>Linhas</span>
           <span>Colunas</span>
@@ -45,12 +47,21 @@
         <div class='grade_component_header_multi_choice'>
           <span>Lorem ipsum</span>
         </div>
-        {#each Array(3) as item, i}
-        <span class='option_dot'>
-          <div class='circle_dot'><div class='dot'></div></div>
-          Lorem
-        </span>
-        {/each}
+        {#if type === 'escala'}
+          <div class='escala_config'>
+            <span>____ a ____</span>
+            <span>Marcador</span>
+            <span>Marcador</span>
+          </div>
+
+        {:else}
+          {#each Array(3) as item, i}
+          <span class='option_dot'>
+            <div class='circle_dot'><div class='dot'></div></div>
+            Lorem
+          </span>
+          {/each}
+        {/if}
       {/if}
 
     </div>
@@ -67,13 +78,12 @@
     margin: auto;
     display: grid;
   }
-  
+
   %fake_component_style {
-    padding: 1em;
+    padding: .5em 1em;
     display: flex;
     justify-content: space-between;
     & span {
-      margin: auto;
       font-size: var(--text-size)
     }
   }
@@ -106,22 +116,33 @@
         font-size: var(--text-size)
       }
   }
+
   .grade_component_body, .grade_component_header{
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+
   .grade_component_header, .grade_component_header_multi_choice {
     margin-bottom: 10px;
   }
+  .escala_config{
+    display: grid;
+    & :first-child{
+      margin-bottom: 1em;
+    }
+  }
+
   .option {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-column: 8px;
   }
+
   .option_dot{
     display: flex;
     justify-content: flex-start;
   }
+
   .circle_dot {
     border: 1px solid var(--dark-gray);
     height: 7px;
@@ -130,6 +151,7 @@
     border-radius: 50%;
     margin: auto 8px auto 0px;
   }
+
   .dot{
     width: 4px;
     height: 4px;

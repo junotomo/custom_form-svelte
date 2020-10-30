@@ -9,6 +9,7 @@ html, body {
   font-family: 'Lato-regular';
   src: url('./fonts/lato/Lato-regular.ttf') format('ttf');
 }
+
 body {
 	color: #333;
 	margin: 0;
