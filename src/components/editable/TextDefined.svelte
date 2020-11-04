@@ -2,13 +2,20 @@
   import Btn from '../fragments/Btn.svelte'
 
   export let form = ''
+
+  let showIcon = '#form_icon_block'
+
+  const hideComponent = () => {
+    form.show = !form.show
+    showIcon = form.show ? '#form_icon_block' : '#form_icon_disabled'
+  }
 </script>
 
   <div class='editable_text_container' class:extend='{form.size ==='long'}'>
     <span class='placeholder'>{form.placeholder}</span>
     <div class='icon_combo'>
-      <svg class='icon_default hide preDetermined'>
-        <use xlink:href="#form_icon_block" />
+      <svg class='icon_default hide preDetermined' on:click={hideComponent}>
+        <use xlink:href='{showIcon}' />
       </svg>
       <svg class='icon_default preDetermined' >
       	<use xlink:href="#form_icon_drag" />
