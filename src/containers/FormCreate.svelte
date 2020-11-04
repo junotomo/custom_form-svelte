@@ -14,30 +14,34 @@
         id: hexID(),
         title: 'Dados do segurado',
         defined: true,
-        components: [
+        items: [
           {
             id: hexID(),
-            type: 'text',
+            type: 'defined_text',
             placeholder: 'Nome do segurado',
             size: 'long',
+            show: true
           },
           {
             id: hexID(),
-            type: 'text',
+            type: 'defined_text',
             size: 'normal',
             placeholder: 'Tipo de pessoa',
+            show: true
           },
           {
             id: hexID(),
-            type: 'text',
+            type: 'defined_text',
             size: 'normal',
             placeholder: 'CPF',
+            show: true
           },
           {
             id: hexID(),
-            type: 'text',
+            type: 'defined_text',
             size: 'normal',
             placeholder: 'RG',
+            show: true
           }
         ],
       },
@@ -45,45 +49,59 @@
         id: hexID(),
         title: 'Emails',
         defined: true,
-        components: [
+        items: [
           {
             id: hexID(),
-            type: 'text'
+            type: 'defined_text',
+            size: 'normal',
+            placeholder: 'RlG',
+            show: true
           },
           {
             id: hexID(),
-            type: 'select'
+            type: 'defined_text',
+            size: 'normal',
+            placeholder: 'RGj',
+            show: true
           }
-        ],
+        ]
       },
       {
         id: hexID(),
         title: 'Telefone',
         defined: true,
-        components: [
+        items: [
           {
             id: hexID(),
-            type: 'text'
+            type: 'defined_text',
+            size: 'normal',
+            placeholder: 'RGh',
           },
           {
             id: hexID(),
-            type: 'select'
+            type: 'defined_text',
+            size: 'normal',
+            placeholder: 'RGf',
+            show: true
           }
-        ],
+        ]
       },
       {
         id: hexID(),
         title: 'Dados do seguro',
         defined: true,
-        components: [
+        items: [
           {
             id: hexID(),
-            type: 'text'
+            type: 'defined_text',
+            size: 'normal',
+            placeholder: 'RGx',
+            show: true
           }
-        ],
+        ]
       }
     ]
-    items = $forms
+  //items = $forms
     console.log($forms)
 
 
@@ -109,7 +127,7 @@
     let newForm = {
       id: hexID(),
       title: 'novo formulário',
-      components: []
+      items: []
     }
     $forms = [...$forms, newForm]
   }

@@ -10,32 +10,33 @@
 
   //let items = currentForm.components
   let modal = false
+  let showIcon = 'form_icon_block'
 
-  const openModal = () => {
-    modal = !modal
-  }
+  const openModal = () => modal = !modal
+  const closeModal = () => modal = false
 
   const add_input = (event) =>{
-   let inputType = event.detail.type
-   let editedForm = $forms.find(edit => edit.id === form.id)
-   modal = false
-   editedForm.components = [...editedForm.components, {id: hexID(), type: inputType}]
-  }
-
-  const excluir = (id) => {
-
-  }
-
-  const closeModal = () => {
+    let inputType = event.detail.type
+    let editedForm = $forms.find(edit => edit.id === form.id)
     modal = false
+    editedForm.items = [...editedForm.items, {id: hexID(), type: inputType}]
   }
 
-  function handleDndConsider(e) {
-		form.components = e.detail.items;
+  const hideComponent = () => {
+    showIcon = form.show ? 'form_icon_block' : 'form_icon_disabled'
+    form.show = !form.show
+  }
+
+  const handleDndConsider = (id, e) => {
+    let idx = $forms.findIndex(x => x.id === id)
+		$forms[idx].items = e.detail.items;
+    $forms = [...$forms]
 	}
 
-	function handleDndFinalize(e) {
-		form.components = e.detail.items;
+	const handleDndFinalize = (id, e) => {
+    let idx = $forms.findIndex(x => x.id === id)
+    $forms[idx].items = e.detail.items;
+    $forms = [...$forms]
 	}
 </script>
 
@@ -49,8 +50,8 @@
       <Btn type='button'
         iconClass={'inverted_icon'}
         classname={'inverted'}
-        icon={'form_icon_block'}
-        on:click={() => excluir(form.id)}
+        icon={showIcon}
+        on:click={hideComponent}
       />
 
       <Btn type='button'
@@ -63,14 +64,12 @@
   </div>
 
   <section class='input_list'
-    use:dndzone={{items: form.components}}
-    on:consider={handleDndConsider}
-    on:finalize={handleDndFinalize}
+    use:dndzone={{items: form.items, type: 'formulario'}}
+    on:consider={(e) => handleDndConsider(form.id, e)}
+    on:finalize={(e) => handleDndFinalize(form.id, e)}
   >
-    {#each form.components as component (component.id)}
-      <div class='form'>
-      <ComponentGetter type={component}/>
-      </div>
+    {#each form.items as item (item.id)}
+        <ComponentGetter type={item}/>
     {/each}
   </section>
   {#if !form.defined}
