@@ -3,7 +3,7 @@
   import {createEventDispatcher} from 'svelte'
 
   export let formID
-  console.log(formID)
+
   let types = ['single_input', 'single_dropdown', 'single_paragrafo','multipla', 'checkbox', 'checkbox_grade', 'escala']
 
   const dispatch = createEventDispatcher()
@@ -16,26 +16,25 @@
   }
 
   const clickOutside = (node) => {
-   const handleClick = event => {
-     if (node && !node.contains(event.target) && !event.defaultPrevented) {
-       node.dispatchEvent(
-         new CustomEvent('click_outside', node)
-       )
-     }
-   }
+    const handleClick = event => {
+      if (node && !node.contains(event.target) && !event.defaultPrevented) {
+        node.dispatchEvent(
+          new CustomEvent('click_outside', node)
+        )
+      }
+    }
+    document.addEventListener('click', handleClick, true);
 
- 	document.addEventListener('click', handleClick, true);
+    return {
+      destroy() {
+        document.removeEventListener('click', handleClick, true);
+      }
+    }
+  }
 
-   return {
-     destroy() {
-       document.removeEventListener('click', handleClick, true);
-     }
- 	}
- }
-
- const handleClickOutside = () => {
-   dispatch('close')
- }
+  const handleClickOutside = () => {
+    dispatch('close')
+  }
 
 </script>
 

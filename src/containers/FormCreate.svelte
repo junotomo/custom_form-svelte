@@ -5,9 +5,6 @@
   import {createEventDispatcher} from 'svelte'
   import {dndzone} from 'svelte-dnd-action'
   import hexID from '@tadashi/hex-id'
-  // import { onMount } from 'svelte'
-
-  let items
 
     $forms = [
       {
@@ -101,10 +98,6 @@
         ]
       }
     ]
-  //items = $forms
-    console.log($forms)
-
-
 
   const dispatch = createEventDispatcher()
 
@@ -123,22 +116,22 @@
   const return_default = () => {
 
   }
+
   const addSection = () => {
     let newForm = {
       id: hexID(),
-      title: 'novo formulário',
+      title: '',
+      defined: false,
       items: []
     }
     $forms = [...$forms, newForm]
   }
 
   function handleDndConsider(e) {
-    console.log('during', e.detail.items)
     $forms = e.detail.items;
   }
 
   function handleDndFinalize(e) {
-    console.log('final', e.detail.items)
     $forms = e.detail.items;
   }
 </script>

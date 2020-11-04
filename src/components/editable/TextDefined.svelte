@@ -29,15 +29,14 @@
 
   .editable_text_container{
     @extend %default_container;
-    width: 148px;
-    display: grid;
-    grid-template-columns: 1fr 40px;
-    grid-gap: .2em;
+    width: 20%;
+    display: flex;
+    justify-content:space-between;
     padding: .5em 1em;
   }
 
   .extend{
-    width: 352px;
+    width: 45%;
   }
   .preDetermined{
     fill:var(--light-gray)

@@ -43,9 +43,13 @@
 <div class='form_box'>
 
   <div class='form_header'>
-    <span>{form.title}</span>
+    {#if form.defined}
+      <span>{form.title}</span>
+    {:else}
+      <input class='form_title' type='text' bind:value={form.title} placeholder='Nova secção' >
+    {/if}
     <div class='form_header_combo'>
-      <span>titulo da seção</span>
+      <span>Titulo da secção</span>
 
       <Btn type='button'
         iconClass={'inverted_icon'}
@@ -69,7 +73,7 @@
     on:finalize={(e) => handleDndFinalize(form.id, e)}
   >
     {#each form.items as item (item.id)}
-        <ComponentGetter type={item}/>
+        <ComponentGetter type={item} formType={form}/>
     {/each}
   </section>
   {#if !form.defined}
@@ -91,6 +95,7 @@
     display: grid;
     grid-gap: 1.5em;
     margin: 1em 0px;
+    font-size: var(--text-size);
   }
 
   .form_header {
@@ -102,8 +107,23 @@
     & span {
       color: var(--white);
       margin: auto 5px;
+      font-weight: bold;
     }
   }
+
+  .form_title, .form_title::placeholder {
+    background-color: var(--dark-gray);
+    border: none;
+    color: var(--white);
+    font-weight: bold;
+    font-size: var(--text-size);
+  }
+
+  .form_title:focus {
+    outline: 0px gray;
+    border-bottom: 1px solid white;
+  }
+
   .form_header_combo{
     display: grid;
     grid-auto-flow: column;
