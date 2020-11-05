@@ -4,7 +4,7 @@
 
   export let formID
 
-  let types = ['single_input', 'single_dropdown', 'single_paragrafo','multipla', 'checkbox', 'checkbox_grade', 'escala']
+  let types = ['single_input', 'single_dropdown', 'single_paragrafo', 'escala','multipla', 'checkbox', 'checkbox_grade', 'multipla_grade']
 
   const dispatch = createEventDispatcher()
 
@@ -37,7 +37,6 @@
   }
 
 </script>
-
 
   <div class="modal_window" use:clickOutside on:click_outside={handleClickOutside}>
     {#each types as type}

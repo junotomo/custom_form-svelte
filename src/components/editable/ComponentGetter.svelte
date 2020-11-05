@@ -5,10 +5,11 @@
 
   export let type = ''
   export let formType = ''
-
-  let chosenComponent = formType.defined ? TextDefined : TextInput
+  
+  let chosenComponent = formType.defined ? TextDefined
+    : (type.type.includes('input') || type.type.includes('paragrafo')) ? TextInput
+    : MultipleChoice
 </script>
-
   <svelte:component this={chosenComponent} form={type}/>
 <style>
 

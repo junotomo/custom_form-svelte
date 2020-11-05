@@ -96,6 +96,26 @@
             show: true
           }
         ]
+      },
+      {
+        id: hexID(),
+        title: 'custom',
+        defined: false,
+        items: [
+          {
+            id: hexID(),
+            type: 'multipla',
+            options:['test', 'teest', 'teeest'],
+            placeholder: 'RGx',
+          },
+          {
+            id: hexID(),
+            type: 'checkbox_grade',
+            rows:['test', 'teest', 'teeest'],
+            columns: ['test2', 'teest2', 'teeest2'],
+            placeholder: 'RGx',
+          }
+        ]
       }
     ]
 

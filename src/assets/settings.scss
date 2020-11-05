@@ -3,11 +3,11 @@
 //   src: url('./fonts/lato/Lato-regular.ttf') format('woff');
 // }
 :root {
+  --red: hsl(357, 63%, 59%);
   --white: hsl(210, 100%, 100%);
   --dark-gray: hsl(240, 9%, 44%);
   --light-gray: hsl(240, 11%, 64%);
-  --dark-gray--hover: hsl(var(--primary-hue), 100%, 39%);
-  --dark-gray--active: hsl(var(--primary-hue), 84%, 30%);
+  --light-blue:	hsl(240, 44%, 96%);
 
   // btn
   --btn-border: 0;
