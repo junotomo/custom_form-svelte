@@ -3,9 +3,9 @@
 
   const oneColumn = ['multipla', 'checkbox', 'escala']
   const fakeMap = new Map()
-  fakeMap.set('single_input', 'Texto curto')
+  fakeMap.set('text', 'Texto curto')
   fakeMap.set('single_dropdown', 'Dropdown')
-  fakeMap.set('single_paragrafo', 'Parágrafo')
+  fakeMap.set('text_paragraph', 'Parágrafo')
   fakeMap.set('multipla', 'Escolha múltipla')
   fakeMap.set('checkbox', 'Checkboxes')
   fakeMap.set('escala', 'Escala Linear')
@@ -17,8 +17,8 @@
 </script>
 
 <span class='fake_component_title'>{title}</span>
-{#if type.includes('single')}
-  <div class:wider='{type === 'single_paragrafo'}' class:fake_line_component='{type !=='paragrafo'}'>
+{#if type.includes('text')}
+  <div class:wider='{type === 'text_paragraph'}' class:fake_line_component='{type !=='text_paragraph'}'>
   <span>Lorem ipsum</span>
   {#if type == 'single_dropdown'}
     <svg  class='icon_default'>

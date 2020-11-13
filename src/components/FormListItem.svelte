@@ -6,18 +6,11 @@ import Btn from './fragments/Btn.svelte'
 export let form
 
 let editForm = false
+
 const dispatch = createEventDispatcher()
-const fastEdit = () => {
-  editForm = !editForm
-}
-
-const close = () => {
-  editForm = false
-}
-
-const editar = () => {
-  dispatch('change')
-}
+const fastEdit = () => editForm = !editForm
+const close = () => editForm = false
+const editar = () => dispatch('change')
 </script>
 
 <div class='row'>

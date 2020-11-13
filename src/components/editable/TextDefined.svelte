@@ -1,10 +1,16 @@
 <script>
   import Btn from '../fragments/Btn.svelte'
+  import {createEventDispatcher} from 'svelte'
 
   export let form = ''
 
   let showIcon = '#form_icon_block'
 
+  const dispatch = createEventDispatcher()
+  const drag = e => {
+    e.preventDefault()
+    dispatch('dragging')
+  }
   const hideComponent = () => {
     form.show = !form.show
     showIcon = form.show ? '#form_icon_block' : '#form_icon_disabled'
@@ -17,7 +23,7 @@
       <svg class='icon_default hide preDetermined' on:click={hideComponent}>
         <use xlink:href='{showIcon}' />
       </svg>
-      <svg class='icon_default preDetermined' >
+      <svg class='icon_default preDetermined' on:mousedown={drag} >
       	<use xlink:href="#form_icon_drag" />
       </svg>
     </div>
@@ -50,5 +56,6 @@
   }
   .placeholder {
     min-width: 70px;
+    margin: auto 0;
   }
 </style>

@@ -12,7 +12,6 @@
 		let currentIndex = pages.findIndex(page => page === currentPage)
 		currentIndex += event.detail.index
 		currentPage = pages[currentIndex]
-		console.log(currentIndex)
 	}
 </script>
 <Sprite/>

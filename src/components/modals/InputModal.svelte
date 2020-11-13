@@ -1,10 +1,10 @@
 <script>
-  import Fake from './fakeComponents/Fake.svelte'
+  import ModalInputsList from './ModalInputsList.svelte'
   import {createEventDispatcher} from 'svelte'
 
   export let formID
 
-  let types = ['single_input', 'single_dropdown', 'single_paragrafo', 'escala','multipla', 'checkbox', 'checkbox_grade', 'multipla_grade']
+  let types = ['text', 'single_dropdown', 'text_paragraph', 'escala','multipla', 'checkbox', 'checkbox_grade', 'multipla_grade']
 
   const dispatch = createEventDispatcher()
 
@@ -41,13 +41,13 @@
   <div class="modal_window" use:clickOutside on:click_outside={handleClickOutside}>
     {#each types as type}
       <div class='container_fake_item'on:click={() => add(type)}>
-        <Fake type={type}/>
+        <ModalInputsList type={type}/>
       </div>
     {/each}
   </div>
 
 <style type='text/scss'>
-  @import '../assets/common';
+  @import '../../assets/common';
 
   .modal_window {
     @extend %default_container;

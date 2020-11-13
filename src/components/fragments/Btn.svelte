@@ -5,7 +5,7 @@
   export let iconClass = ''
 
 </script>
-<button class:default_btn='{classname === ''}' class='custom_btn {classname}' on:click>
+<button class:default_btn='{classname === ''}' class='custom_btn {classname}' on:mousedown on:click>
 
   {#if icon}
     <svg class:icon_default='{iconClass === ''}' class='{iconClass}' >
@@ -76,7 +76,7 @@
 		background-image: none;
 		border-radius: var(--btn-border-radius);
 		box-sizing: border-box;
-
+    gap:.5em;
 		cursor: pointer;
 		display: inline-flex;
 		font-size: var(--text-size);
