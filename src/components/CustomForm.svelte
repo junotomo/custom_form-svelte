@@ -20,13 +20,14 @@
   const closeModal = () => modal = false
 
   const add_input = event => {
-    let inputType = event.detail.type
+    let inputComponent = event.detail.component
+    console.log(inputComponent);
     modal = false
 
-    if (inputType.includes('text')) {
-        form.items = [...form.items, {id: hexID(), type: inputType, title: ''}]
-    } else if (inputType === 'checkbox_grade' || inputType === 'multipla_grade') {
-        form.items = [...form.items, {id: hexID(), type: inputType,
+    if (inputComponent.includes('text')) {
+        form.items = [...form.items, {id: hexID(), component: inputComponent, title: ''}]
+    } else if (inputComponent === 'checkbox_grade' || inputComponent === 'multipla_grade') {
+        form.items = [...form.items, {id: hexID(), component: inputComponent,
           options: [
             [
               {
@@ -51,10 +52,10 @@
           ]
         }
       ]
-    }else if (inputType === 'escala') {
-      form.items = [...form.items, {id: hexID(), type: inputType, range: 2,start: '', end: ''}]
+    }else if (inputComponent === 'escala') {
+      form.items = [...form.items, {id: hexID(), component: inputComponent, range: 2,start: '', end: ''}]
     } else {
-      form.items = [...form.items, {id: hexID(), type: inputType,
+      form.items = [...form.items, {id: hexID(), component: inputComponent,
          options: [
            {
            id: hexID(),
@@ -149,8 +150,8 @@
   >
     {#each form.items as item (item.id)}
         <ComponentGetter
-          type={item}
-          formType={form}
+          component={item}
+          formComponent={form}
           on:dragging={dragItem}
           on:delete={deleteInput}
         />

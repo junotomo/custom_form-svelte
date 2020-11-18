@@ -4,11 +4,11 @@
   import MultipleChoice from './MultipleChoice.svelte'
   import {createEventDispatcher} from 'svelte'
 
-  export let type = ''
-  export let formType = ''
-  
-  let chosenComponent = formType.defined ? TextDefined
-    : (type.type.includes('text')) ? TextInput
+  export let component = ''
+  export let formComponent = ''
+
+  let chosenComponent = formComponent.defined ? TextDefined
+    : (component.component.includes('text')) ? TextInput
     : MultipleChoice
 
   const dispatch = createEventDispatcher()
@@ -24,8 +24,8 @@
 </script>
   <svelte:component
     this={chosenComponent}
-    form={type}
-    formID={formType.id}
+    form={component}
+    formID={formComponent.id}
     on:dragging={passDrag}
     on:delete={deleteInput}
   />

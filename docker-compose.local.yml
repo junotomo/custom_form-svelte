@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  mongo:
+    ports:
+      - 27017:27017
+  app:
+    user: ${USER_ID}:${USER_ID}
+    tty: true
+    build:
+      dockerfile: ./Dockerfile.dev
+      context: ./
+      args:
+        PORT: ${PORT}
+        NODE_ENV: ${NODE_ENV}
+        PUBLIC_PATH: ${PUBLIC_PATH}
+        ENDPOINT: ${ENDPOINT}
+        VERSION: ${VERSION}
+        USER_ID: ${USER_ID}
+        # o grupo tem que ser igual o id do user
+        GROUP_ID: ${USER_ID}
+    command: ["npm", "run", "dev"]
+    volumes:
+      - ./public:/home/node/app/public
+      - ./server:/home/node/app/server
+      - ./src:/home/node/app/src
+      - ./static:/home/node/app/static
+      - ./rollup.config.js:/home/node/app/rollup.config.js
+      - ./postcss.config.js:/home/node/app/postcss.config.js
+      - ./package.json:/home/node/app/package.json

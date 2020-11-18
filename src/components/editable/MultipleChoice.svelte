@@ -21,7 +21,7 @@
     e.preventDefault()
     dispatch('dragging')
   }
-  
+
   const edit = e =>{
     editable = e.detail.edit
   }
@@ -33,7 +33,7 @@
 
 <InputBlock {item} on:editable={edit} on:dragging={dragItem} on:delete={deleteInput}>
   <slot>
-  {#if item.type === 'escala'}
+  {#if item.component === 'escala'}
     <Escala {formID} inputID={form.id} {editable}/>
   {:else if Array.isArray(item.options[0])}
   <div class="columns">

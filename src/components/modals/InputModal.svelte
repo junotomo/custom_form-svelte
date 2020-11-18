@@ -4,13 +4,13 @@
 
   export let formID
 
-  let types = ['text', 'single_dropdown', 'text_paragraph', 'escala','multipla', 'checkbox', 'checkbox_grade', 'multipla_grade']
+  let components = ['text', 'single_dropdown', 'text_paragraph', 'escala','multipla', 'checkbox', 'checkbox_grade', 'multipla_grade']
 
   const dispatch = createEventDispatcher()
 
   const add = (component) => {
     dispatch('addInput', {
-      type: component,
+      component: component,
       id: formID
     })
   }
@@ -39,9 +39,9 @@
 </script>
 
   <div class="modal_window" use:clickOutside on:click_outside={handleClickOutside}>
-    {#each types as type}
-      <div class='container_fake_item'on:click={() => add(type)}>
-        <ModalInputsList type={type}/>
+    {#each components as component}
+      <div class='container_fake_item'on:click={() => add(component)}>
+        <ModalInputsList {component}/>
       </div>
     {/each}
   </div>

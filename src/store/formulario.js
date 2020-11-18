@@ -21,33 +21,41 @@ export const DEFAULT_FORMS = [
 		items: [
 			{
 				id: hexID(),
-				type: 'defined_text',
+				component: 'defined_text',
+				type: 'text',
+				title: 'nome',
 				placeholder: 'Nome do segurado',
 				size: 'long',
 				show: true
 			},
 			{
 				id: hexID(),
-				type: 'defined_text',
+				component: 'defined_text',
+				type: 'combo',
+				title:'tipo_pessoa',
 				size: 'normal',
 				placeholder: 'Tipo de pessoa',
 				show: true
 			},
 			{
 				id: hexID(),
+				component: 'defined_text',
 				type: 'defined_text',
 				size: 'normal',
+				title:'cpf',
 				placeholder: 'CPF',
 				show: true
 			},
 			{
 				id: hexID(),
+				component: 'defined_text',
 				type: 'defined_text',
 				size: 'normal',
+				title: 'rg',
 				placeholder: 'RG',
 				show: true
 			}
-		],
+		]
 	},
 	{
 		id: hexID(),
@@ -56,14 +64,18 @@ export const DEFAULT_FORMS = [
 		items: [
 			{
 				id: hexID(),
+				component: 'defined_text',
 				type: 'defined_text',
+				title: 'sexo',
 				size: 'normal',
 				placeholder: 'RlG',
 				show: true
 			},
 			{
 				id: hexID(),
-				type: 'defined_text',
+				component: 'defined_text',
+				type: 'text',
+				title: 'empresa',
 				size: 'normal',
 				placeholder: 'RGj',
 				show: true
@@ -77,12 +89,16 @@ export const DEFAULT_FORMS = [
 		items: [
 			{
 				id: hexID(),
+				component: 'defined_text',
+				title: 'telefone',
 				type: 'defined_text',
 				size: 'normal',
 				placeholder: 'RGh',
 			},
 			{
 				id: hexID(),
+				component: 'defined_text',
+				title: 'celular',
 				type: 'defined_text',
 				size: 'normal',
 				placeholder: 'RGf',
@@ -97,9 +113,29 @@ export const DEFAULT_FORMS = [
 		items: [
 			{
 				id: hexID(),
-				type: 'defined_text',
+				component: 'defined_text',
+				type: 'combo',
+				title: 'tipo_seguro',
 				size: 'normal',
-				placeholder: 'RGx',
+				placeholder: 'Tipo de seguro',
+				show: true
+			},
+			{
+				id: hexID(),
+				component: 'defined_text',
+				type: 'combo',
+				title: 'ramo_seguro',
+				size: 'normal',
+				placeholder: 'Ramo do seguro',
+				show: true
+			},
+			{
+				id: hexID(),
+				component: 'defined_text',
+				type: 'combo',
+				title: 'origem',
+				size: 'normal',
+				placeholder: 'Tipo de seguro',
 				show: true
 			}
 		]
@@ -111,6 +147,7 @@ export const DEFAULT_FORMS = [
 		items: [
 			{
 				id: hexID(),
+				component: 'defined_text',
 				type: 'checkbox_grade',
 				options:[
 					[
@@ -145,6 +182,7 @@ export const DEFAULT_FORMS = [
 			},
 			{
 				id: hexID(),
+				component: 'multipla',
 				type: 'multipla',
 				options:[
 					{

@@ -5,7 +5,7 @@
 
   export let form = ''
 
-  const dummyText = form.type === 'text' ? 'Texto de resposta curta ...' : 'Texto de resposta longa ...'
+  const dummyText = form.component === 'text' ? 'Texto de resposta curta ...' : 'Texto de resposta longa ...'
   const dispatch = createEventDispatcher()
 
   const dragItem = e => {
@@ -13,12 +13,13 @@
     dispatch('dragging')
   }
   form.title = form.title ? form.title : ''
+  form.placeholder = form.placeholder ? form.placeholder : ''
 </script>
 
   <InputBlock item={form} on:dragging={dragItem}>
     <slot>
       <div class='dummy_text'>
-        {dummyText}
+      <input class='placeholder_text' type="text" bind:value={form.placeholder} placeholder={dummyText}>
       </div>
     </slot>
   </InputBlock>
@@ -29,5 +30,12 @@
 
   .dummy_text {
     color: var(--light-gray)
+  }
+  .placeholder_text{
+    border: none;
+    outline: none;
+    &:focus{
+        border-bottom: 1px solid var(--dark-gray)
+    }
   }
 </style>

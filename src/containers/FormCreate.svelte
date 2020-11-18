@@ -19,7 +19,7 @@
   const drag = () => dragDisabled = false
 
   const save = () => {
-
+    console.log($forms);
   }
 
   const return_default = () => {

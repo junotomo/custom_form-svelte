@@ -1,0 +1,56 @@
+version: "3.7"
+services:
+  mongo:
+    image: mongo:4-xenial
+    command: >
+      --storageEngine=wiredTiger
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_CUSTOM_FORM_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_CUSTOM_FORM_PWD}
+    ports:
+      - ${PORT_PUBLISHED_DB}:${PORT_DB}
+    networks:
+      - net
+    volumes:
+      - mongo:/data/db
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  app:
+    image: ${REGISTRY}/${IMAGE}:${VERSION}
+    command: ["node", "server"]
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${PORT}
+      - DEBUG=${DEBUG}
+      - DEBUG_PREFIX=${DEBUG_PREFIX}
+      - DEBUG_COLORS=1
+      - ENDPOINT_ZENDESK=${ENDPOINT_ZENDESK}
+      - AUTH_ZENDESK_USER=${AUTH_ZENDESK_USER}
+      - AUTH_ZENDESK_PASSWD=${AUTH_ZENDESK_PASSWD}
+      - MONGO_CONN=${MONGO_CUSTOM_FORM_CONN}
+      - MONGO_USER=${MONGO_CUSTOM_FORM_USER}
+      - MONGO_PASS=${MONGO_CUSTOM_FORM_PWD}
+      - MONGO_AUTHSOURCE=${MONGO_CUSTOM_FORM_AUTHSOURCE}
+      - MONGO_DB=${MONGO_CUSTOM_FORM_DB}
+      - TADASHI_SECRET_KEY_JWT=${TADASHI_SECRET_KEY_JWT}
+      - VERSION=${VERSION}
+    ports:
+      - ${PORT_PUBLISHED}:${PORT}
+    networks:
+      - net
+    depends_on:
+      - mongo
+    deploy:
+      replicas: ${REPLICAS}
+      restart_policy:
+        condition: on-failure
+
+networks:
+  net:
+    name: ${NODE_ENV}_net
+
+volumes:
+  mongo:
+    name: ${NODE_ENV}_mongo
